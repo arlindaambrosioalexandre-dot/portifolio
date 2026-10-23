@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio | Desenvolvedor Web Full-Stack</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0B0F17',
+                            800: '#111827',
+                            700: '#1F2937',
+                            600: '#374151'
+                        },
+                        brand: {
+                            cyan: '#06B6D4',
+                            violet: '#8B5CF6',
+                            emerald: '#10B981'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0B0F17;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism elements */
+        .glass-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(6, 182, 212, 0.15);
+        }
+
+        .glass-nav {
+            background: rgba(11, 15, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Gradient Glows */
+        .glow-cyan {
+            box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.5);
+        }
+
+        .glow-violet {
+            box-shadow: 0 0 25px -5px rgba(139, 92, 246, 0.5);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #06B6D4 0%, #3B82F6 50%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+
+        /* Animation utilities */
+        .animate-pulse-slow {
+            animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-white">
+
+    <!-- Glowing Background Lights -->
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow"></div>
+    <div class="fixed bottom-0 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+    <!-- Header / Sticky Navigation -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#hero" class="flex items-center gap-2 group">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center font-bold text-lg text-white shadow-lg group-hover:scale-105 transition-transform duration-300">
+                    &lt;/&gt;
+                </div>
+                <span class="font-bold text-xl tracking-tight text-white group-hover:text-cyan-400 transition-colors">
+                    Arlinda<span class="text-cyan-400">.am</span>
+                </span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="#sobre" class="text-sm text-gray-300 hover:text-cyan-400 font-medium transition-colors">Sobre</a>
+                <a href="#habilidades" class="text-sm text-gray-300 hover:text-cyan-400 font-medium transition-colors">Habilidades</a>
+                <a href="#projetos" class="text-sm text-gray-300 hover:text-cyan-400 font-medium transition-colors">Projetos</a>
+                <a href="#experiencia" class="text-sm text-gray-300 hover:text-cyan-400 font-medium transition-colors">Trajetória</a>
+                <a href="#contato" class="text-sm text-gray-300 hover:text-cyan-400 font-medium transition-colors">Contato</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="hidden md:flex items-center gap-4">
+                <a href="#contato" class="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 hover:from-cyan-400 hover:to-violet-500 rounded-xl shadow-md transition-all duration-300 hover:shadow-cyan-500/25 hover:scale-[1.02]">
+                    Vamos Conversar
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg text-gray-400 hover:text-white hover:bg-dark-700 focus:outline-none" aria-label="Abrir Menu">
+                <i class="fa-solid fa-bars text-xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-t border-gray-800 px-4 pt-4 pb-6 space-y-3">
+            <a href="#sobre" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-400 hover:bg-dark-800">Sobre Mim</a>
+            <a href="#habilidades" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-400 hover:bg-dark-800">Habilidades</a>
+            <a href="#projetos" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-400 hover:bg-dark-800">Projetos</a>
+            <a href="#experiencia" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-400 hover:bg-dark-800">Trajetória</a>
+            <a href="#contato" class="mobile-link block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-400 hover:bg-dark-800">Contato</a>
+            <a href="#contato" class="mobile-link block text-center w-full mt-4 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 rounded-xl">
+                Vamos Conversar
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20">
+
+        <!-- HERO SECTION -->
+        <section id="hero" class="min-h-[calc(100vh-5rem)] flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-16">
+            <div class="max-w-5xl mx-auto text-center space-y-8">
+                
+                <!-- Status Badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-cyan-500/30 text-xs sm:text-sm font-medium text-cyan-300 animate-float">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 -ml-5"></span>
+                    <span>Disponível para novos projetos & oportunidades</span>
+                </div>
+
+                <!-- Main Heading -->
+                <div class="space-y-4">
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white">
+                        Olá, eu sou <span class="text-gradient">Arlinda Ambrósio</span>
+                    </h1>
+                    <p class="text-xl sm:text-2xl text-gray-400 font-medium">
+                        Desenvolvedora Web Full-Stack
+                    </p>
+                </div>
+
+                <!-- Catchy Tagline -->
+                <p class="max-w-2xl mx-auto text-gray-400 text-base sm:text-lg leading-relaxed">
+                    Transformando ideias em código limpo, aplicações escaláveis e experiências digitais intuitivas e marcantes.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+                    <a href="#projetos" class="px-7 py-3.5 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 rounded-xl shadow-lg shadow-cyan-500/20 hover:scale-105 hover:shadow-cyan-500/40 transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-solid fa-code"></i> Ver Projetos
+                    </a>
+                    <a href="#contato" class="px-7 py-3.5 text-sm font-semibold text-gray-200 glass-card hover:bg-dark-700 hover:text-white rounded-xl transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i> Contato
+                    </a>
+                    <button onclick="downloadCV()" class="px-7 py-3.5 text-sm font-semibold text-cyan-400 glass-card hover:bg-cyan-500/10 border-cyan-500/30 rounded-xl transition-all duration-300 flex items-center gap-2">
+                        <i class="fa-solid fa-file-arrow-down"></i> Baixar CV
+                    </button>
+                </div>
+
+                <!-- Social Quick Links -->
+                <div class="pt-8 flex justify-center gap-6 text-gray-400 text-xl">
+                    <a href="https://github.com" target="_blank" class="hover:text-cyan-400 transition-colors" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com" target="_blank" class="hover:text-cyan-400 transition-colors" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://wa.me/" target="_blank" class="hover:text-cyan-400 transition-colors" title="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:contato@exemplo.com" class="hover:text-cyan-400 transition-colors" title="E-mail"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE MIM (ABOUT ME) -->
+        <section id="sobre" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-cyan-400 mb-2">Conheça-me melhor</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Sobre Mim</p>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+                
+                <!-- Profile Image & Quick Details -->
+                <div class="md:col-span-5 flex flex-col items-center">
+                    <div class="relative group">
+                        <div class="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-violet-600 rounded-3xl blur opacity-70 group-hover:opacity-100 transition duration-500"></div>
+                        <img src="WhatsApp_Image_2026-10-22_at_14.39.19__1_-removebg-preview.png" 
+                             alt="Arlinda Ambrósio" 
+                             class="relative rounded-2xl w-72 h-80 object-cover shadow-2xl border border-gray-800">
+                    </div>
+                    
+                    <!-- Quick Info Badges -->
+                    <div class="mt-6 flex flex-wrap justify-center gap-2 max-w-xs text-xs">
+                        <span class="px-3 py-1.5 rounded-lg glass-card text-gray-300"><i class="fa-solid fa-location-dot text-cyan-400 mr-1"></i> São Paulo, Brasil</span>
+                        <span class="px-3 py-1.5 rounded-lg glass-card text-gray-300"><i class="fa-solid fa-language text-violet-400 mr-1"></i> PT (Nativo) / EN (Avançado)</span>
+                    </div>
+                </div>
+
+                <!-- Text & Stats -->
+                <div class="md:col-span-7 space-y-6 text-gray-300">
+                    <h3 class="text-2xl font-bold text-white">
+                        Desenvolvendo soluções web modernas com alta performance e foco na experiência do usuário.
+                    </h3>
+                    <p class="leading-relaxed">
+                        Tenho mais de 1 anos de experiência no ecossistema de desenvolvimento web. Minha paixão é transformar problemas complexos em interfaces simples, rápidas e elegantes. Trabalho com stacks modernas, garantindo boas práticas de código, acessibilidade e SEO.
+                    </p>
+                    <p class="leading-relaxed">
+                        Adoro aprender novas tecnologias e colaborar com times multidisciplinares. Quando não estou programando, gosto de contribuir para projetos open-source e produzir conteúdo técnico.
+                    </p>
+
+                    <!-- Interactive Stats Cards -->
+                    <div class="grid grid-cols-3 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-cyan-400">4+</span>
+                            <span class="text-xs text-gray-400">Anos de Experiência</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-violet-400">30+</span>
+                            <span class="text-xs text-gray-400">Projetos Concluídos</span>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl text-center">
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</span>
+                            <span class="text-xs text-gray-400">Satisfação dos Clientes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HABILIDADES TÉCNICAS (SKILLS) -->
+        <section id="habilidades" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-cyan-400 mb-2">Stack & Ferramentas</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Habilidades Técnicas</p>
+            </div>
+
+            <!-- Category Tabs -->
+            <div class="flex justify-center gap-2 sm:gap-4 mb-10 overflow-x-auto pb-2">
+                <button onclick="switchSkillTab('all')" class="skill-tab active px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 bg-cyan-500/20 text-cyan-400 border border-cyan-500/30">
+                    Todas
+                </button>
+                <button onclick="switchSkillTab('frontend')" class="skill-tab px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 glass-card text-gray-400 hover:text-white">
+                    LFentregadora.Lda
+                </button>
+                <button onclick="switchSkillTab('backend')" class="skill-tab px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 glass-card text-gray-400 hover:text-white">
+                    DrenaSoluções
+                </button>
+            </div>
+
+            <!-- Skills Grid -->
+            <div id="skills-container" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Dynamic Skill Items -->
+            </div>
+        </section>
+
+        <!-- PROJETOS EM DESTAQUE (PROJECTS) -->
+        <section id="projetos" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-cyan-400 mb-2">Portfólio</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Projetos em Destaque</p>
+            </div>
+
+            <!-- Project Filter Tags -->
+            <div class="flex flex-wrap justify-center gap-3 mb-10">
+                <button onclick="filterProjects('todos')" class="project-filter active px-4 py-2 rounded-lg text-xs sm:text-sm font-medium bg-cyan-500 text-white shadow-md shadow-cyan-500/20 transition-all">
+                    Todos
+                </button>
+                <button onclick="filterProjects('frontend')" class="project-filter px-4 py-2 rounded-lg text-xs sm:text-sm font-medium glass-card text-gray-400 hover:text-white transition-all">
+                    LFentregadora.Lda
+                </button>
+                <button onclick="filterProjects('fullstack')" class="project-filter px-4 py-2 rounded-lg text-xs sm:text-sm font-medium glass-card text-gray-400 hover:text-white transition-all">
+                    DrenaSoluções
+                </button>
+            </div>
+
+            <!-- Project Cards Grid -->
+            <div id="projects-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Dynamic Projects Inserted Here -->
+            </div>
+        </section>
+
+        <!-- EXPERIÊNCIA & FORMAÇÃO (TIMELINE) -->
+        <section id="experiencia" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-cyan-400 mb-2">Carreira</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Trajetória & Formação</p>
+            </div>
+
+            <!-- Timeline Structure -->
+            <div class="relative border-l-2 border-gray-800 ml-4 md:ml-32 space-y-12">
+                
+                <!-- Timeline Item 1 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-500 border-4 border-dark-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="md:absolute md:-left-36 md:top-1 text-xs font-semibold text-cyan-400 mb-2 md:mb-0">
+                        2023 - Presente
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="text-xs uppercase tracking-wider text-violet-400 font-bold">Experiência Profissional</span>
+                        <h3 class="text-xl font-bold text-white mt-1">Desenvolvedora de paginas webs</h3>
+                        <p class="text-sm text-gray-400 mb-4">Contabilista</p>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Liderança no desenvolvimento de paginas webs  escaláveis utilizando FIGMA, HTML, CSS e JAVASCRIPT. Otimização de performance de sistemas reduzindo tempo de carregamento em 40%.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 2 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-violet-500 border-4 border-dark-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="md:absolute md:-left-36 md:top-1 text-xs font-semibold text-gray-400 mb-2 md:mb-0">
+                        2021 - 2023
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="text-xs uppercase tracking-wider text-cyan-400 font-bold">Experiência Profissional</span>
+                        <h3 class="text-xl font-bold text-white mt-1">Desenvolvedora de Web Sites</h3>
+                        <p class="text-sm text-gray-400 mb-4">H2N Noruega</p>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Criação de Web Sites para resolução de problemas nas comunidades.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Timeline Item 3 -->
+                <div class="relative pl-8 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-emerald-500 border-4 border-dark-900 group-hover:scale-125 transition-transform"></div>
+                    <div class="md:absolute md:-left-36 md:top-1 text-xs font-semibold text-gray-400 mb-2 md:mb-0">
+                        2019 - 2026
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl">
+                        <span class="text-xs uppercase tracking-wider text-emerald-400 font-bold">Educação Acadêmica</span>
+                        <h3 class="text-xl font-bold text-white mt-1">Programação</h3>
+                        <p class="text-sm text-gray-400 mb-4">Acelerador Juvenil</p>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Formação com ênfase em contabilidade, confeitaria, marcketing e negocio, empreendedorismo e informatica.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CONTATO (CONTACT) -->
+        <section id="contato" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-xs uppercase font-bold tracking-widest text-cyan-400 mb-2">Conecte-se comigo</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white">Vamos Trabalhar Juntos?</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Contact Info Box -->
+                <div class="lg:col-span-5 space-y-6">
+                    <h3 class="text-2xl font-bold text-white">Mande uma mensagem ou entre em contato diretamente</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Estou aberto a oportunidades freelance, contratação integral ou ideias para novos projetos inovadores.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <!-- Direct Email Card -->
+                        <div class="glass-card p-4 rounded-xl flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-gray-400">E-mail de Contato</p>
+                                    <p class="text-sm font-semibold text-white">arlindaambrosioalexandre@gmail.com</p>
+                                </div>
+                            </div>
+                            <button onclick="copyEmail('arlindaambrosioalexandre@gmail.com')" class="p-2 text-gray-400 hover:text-cyan-400 transition-colors" title="Copiar E-mail">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <!-- Location Card -->
+                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-violet-500/20 text-violet-400 flex items-center justify-center">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Localização</p>
+                                <p class="text-sm font-semibold text-white">Ontupaia-Nacala Porto</p>
+                            </div>
+                        </div>
+
+                        <!-- Availability Card -->
+                        <div class="glass-card p-4 rounded-xl flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs text-gray-400">Atendimento</p>
+                                <p class="text-sm font-semibold text-white">Seg - Sex, 09h às 18h</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Icons -->
+                    <div class="pt-4 flex gap-4">
+                        <a href="https://github.com" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-cyan-400 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-cyan-400 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="https://wa.me/" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-cyan-400 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-whatsapp text-xl"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="w-12 h-12 rounded-xl glass-card flex items-center justify-center text-gray-300 hover:text-cyan-400 hover:scale-110 transition-all">
+                            <i class="fa-brands fa-x-twitter text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <form id="contact-form" onsubmit="handleFormSubmit(event)" class="glass-card p-8 rounded-2xl space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Seu Nome</label>
+                                <input type="text" required placeholder="Ex: Maria Silva" class="w-full px-4 py-3 rounded-xl bg-dark-900/60 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Seu E-mail</label>
+                                <input type="email" required placeholder="maria@exemplo.com" class="w-full px-4 py-3 rounded-xl bg-dark-900/60 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Assunto</label>
+                            <input type="text" required placeholder="Ex: Novo Projeto Web / Oportunidade" class="w-full px-4 py-3 rounded-xl bg-dark-900/60 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 uppercase tracking-wider mb-2">Mensagem</label>
+                            <textarea rows="5" required placeholder="Conte um pouco sobre suas necessidades..." class="w-full px-4 py-3 rounded-xl bg-dark-900/60 border border-gray-800 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 text-sm font-semibold text-white bg-gradient-to-r from-cyan-500 to-violet-600 rounded-xl shadow-lg shadow-cyan-500/20 hover:scale-[1.01] hover:shadow-cyan-500/30 transition-all duration-300 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800 bg-dark-900/80 py-10 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="text-center sm:text-left">
+                <p class="text-sm font-medium text-gray-400">
+                    &copy; 2026 Arlinda Ambrósio. Todos os direitos reservados.
+                </p>
+                <p class="text-xs text-gray-500 mt-1">
+                    Construído com FIGMA, HTML,  CSS e JavaScript.
+                </p>
+            </div>
+
+            <button onclick="scrollToTop()" class="p-3 rounded-xl glass-card text-gray-400 hover:text-cyan-400 hover:scale-110 transition-all" title="Voltar ao Topo">
+                <i class="fa-solid fa-arrow-up"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- PROJECT DETAIL MODAL -->
+    <div id="project-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="glass-card max-w-3xl w-full rounded-2xl overflow-hidden border border-gray-700 shadow-2xl relative max-h-[90vh] flex flex-col">
+            <!-- Close Button -->
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-dark-900/80 text-gray-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            
+            <div id="modal-content" class="overflow-y-auto p-6 space-y-6">
+                <!-- Modal details dynamically populated -->
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-5 right-5 z-50 hidden transition-all duration-300 transform translate-y-10">
+        <div class="glass-card border-emerald-500/50 bg-emerald-950/80 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3">
+            <i class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+            <span id="toast-message">Mensagem enviada com sucesso!</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT INTERACTIVITY -->
+    <script>
+        /* --- SKILLS DATA & LOGIC --- */
+        const skillsData = [
+            { name: "HTML5", category: "frontend", icon: "fa-brands fa-html5", color: "text-orange-500" },
+            { name: "CSS3 / Tailwind", category: "frontend", icon: "fa-brands fa-css3-alt", color: "text-cyan-400" },
+            { name: "JavaScript", category: "frontend", icon: "fa-brands fa-js", color: "text-yellow-400" },
+            { name: "TypeScript", category: "frontend", icon: "fa-solid fa-code", color: "text-blue-400" },
+            { name: "React.js", category: "frontend", icon: "fa-brands fa-react", color: "text-cyan-400" },
+            { name: "Next.js", category: "frontend", icon: "fa-solid fa-N", color: "text-white" },
+            { name: "Node.js", category: "backend", icon: "fa-brands fa-node-js", color: "text-emerald-500" },
+            { name: "Python", category: "backend", icon: "fa-brands fa-python", color: "text-yellow-500" },
+            { name: "PostgreSQL", category: "backend", icon: "fa-solid fa-database", color: "text-blue-500" },
+            { name: "MongoDB", category: "backend", icon: "fa-solid fa-leaf", color: "text-emerald-400" },
+            { name: "Docker", category: "devops", icon: "fa-brands fa-docker", color: "text-blue-400" },
+            { name: "Git & GitHub", category: "devops", icon: "fa-brands fa-git-alt", color: "text-orange-600" }
+        ];
+
+        function renderSkills(category = 'all') {
+            const container = document.getElementById('skills-container');
+            container.innerHTML = '';
+
+            const filtered = category === 'all' 
+                ? skillsData 
+                : skillsData.filter(s => s.category === category || (category === 'backend' && s.category === 'backend'));
+
+            filtered.forEach(skill => {
+                const el = document.createElement('div');
+                el.className = 'glass-card p-4 rounded-xl flex flex-col items-center justify-center gap-3 hover:-translate-y-1 transition-transform cursor-pointer group';
+                el.innerHTML = `
+                    <i class="${skill.icon} text-3xl ${skill.color} group-hover:scale-110 transition-transform"></i>
+                    <span class="text-xs font-semibold text-gray-300">${skill.name}</span>
+                `;
+                container.appendChild(el);
+            });
+        }
+
+        function switchSkillTab(category) {
+            document.querySelectorAll('.skill-tab').forEach(btn => {
+                btn.classList.remove('bg-cyan-500/20', 'text-cyan-400', 'border', 'border-cyan-500/30');
+                btn.classList.add('glass-card', 'text-gray-400');
+            });
+            event.currentTarget.classList.add('bg-cyan-500/20', 'text-cyan-400', 'border', 'border-cyan-500/30');
+            event.currentTarget.classList.remove('glass-card', 'text-gray-400');
+            renderSkills(category);
+        }
+
+        /* --- PROJECTS DATA & LOGIC --- */
+        const projectsData = [
+            {
+                id: 1,
+                title: "E-Commerce TechStore",
+                category: "fullstack",
+                image: "https://images.unsplash.com/photo-1556742049-0a6756da99ec?auto=format&fit=crop&w=800&q=80",
+                description: "Plataforma completa de vendas com autenticação de usuários, carrinho em tempo real e integração de pagamentos via Stripe.",
+                longDescription: "Projeto e-commerce de alta performance desenvolvido para lojas de tecnologia. Possui painel administrativo completo, cálculo de frete, busca otimizada de produtos e sistema de avaliações.",
+                tags: ["React", "Node.js", "Tailwind", "PostgreSQL"],
+                liveUrl: "#",
+                githubUrl: "https://github.com"
+            },
+            {
+                id: 2,
+                title: "SaaS Task Manager",
+                category: "webapp",
+                image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+                description: "Dashboard interativo no estilo Kanban para gestão de projetos em equipe com atualização de dados via WebSockets.",
+                longDescription: "Aplicativo SaaS de gerenciamento de tarefas com fluxo de trabalho dinâmico, atribuição de membros, estimativas de prazo, relatórios gráficos e notificações em tempo real.",
+                tags: ["Next.js", "TypeScript", "Tailwind", "MongoDB"],
+                liveUrl: "#",
+                githubUrl: "https://github.com"
+            },
+            {
+                id: 3,
+                title: "Finanças Pessoais Dashboard",
+                category: "frontend",
+                image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                description: "Interface analítica para controle de gastos diários, metas financeiras e gráficos interativos de rendimento.",
+                longDescription: "Dashboard limpo e intuitivo para acompanhamento de receitas e despesas. Conta com filtros por período, exportação de dados em PDF/Excel e modo escuro nativo.",
+                tags: ["Vue.js", "Tailwind CSS", "Chart.js"],
+                liveUrl: "#",
+                githubUrl: "https://github.com"
+            }
+        ];
+
+        function renderProjects(filter = 'todos') {
+            const grid = document.getElementById('projects-grid');
+            grid.innerHTML = '';
+
+            const filtered = filter === 'todos' 
+                ? projectsData 
+                : projectsData.filter(p => p.category === filter);
+
+            filtered.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "glass-card rounded-2xl overflow-hidden group hover:-translate-y-2 transition-all duration-300 flex flex-col";
+                card.innerHTML = `
+                    <div class="relative overflow-hidden h-48">
+                        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark-900 via-transparent to-transparent opacity-80"></div>
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-3">
+                                ${p.tags.map(t => `<span class="px-2.5 py-1 text-xs font-semibold rounded-md bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">${t}</span>`).join('')}
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">${p.title}</h3>
+                            <p class="text-sm text-gray-400 mt-2 line-clamp-2">${p.description}</p>
+                        </div>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-800">
+                            <button onclick="openModal(${p.id})" class="text-xs font-semibold text-cyan-400 hover:underline flex items-center gap-1">
+                                Detalhes <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                            <div class="flex gap-3 text-gray-400">
+                                <a href="${p.githubUrl}" target="_blank" class="hover:text-white transition-colors" title="Ver Código"><i class="fa-brands fa-github text-lg"></i></a>
+                                <a href="${p.liveUrl}" target="_blank" class="hover:text-cyan-400 transition-colors" title="Demo ao Vivo"><i class="fa-solid fa-arrow-up-right-from-square text-sm"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function filterProjects(category) {
+            document.querySelectorAll('.project-filter').forEach(btn => {
+                btn.classList.remove('bg-cyan-500', 'text-white', 'shadow-md', 'shadow-cyan-500/20');
+                btn.classList.add('glass-card', 'text-gray-400');
+            });
+            event.currentTarget.classList.add('bg-cyan-500', 'text-white', 'shadow-md', 'shadow-cyan-500/20');
+            event.currentTarget.classList.remove('glass-card', 'text-gray-400');
+            renderProjects(category);
+        }
+
+        /* --- MODAL LOGIC --- */
+        function openModal(id) {
+            const project = projectsData.find(p => p.id === id);
+            if (!project) return;
+
+            const modal = document.getElementById('project-modal');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <img src="${project.image}" alt="${project.title}" class="w-full h-64 object-cover rounded-xl">
+                <div class="space-y-4">
+                    <h3 class="text-2xl font-bold text-white">${project.title}</h3>
+                    <div class="flex flex-wrap gap-2">
+                        ${project.tags.map(t => `<span class="px-3 py-1 text-xs font-semibold rounded-md bg-cyan-500/20 text-cyan-400">${t}</span>`).join('')}
+                    </div>
+                    <p class="text-gray-300 leading-relaxed">${project.longDescription}</p>
+                    <div class="flex gap-4 pt-4">
+                        <a href="${project.liveUrl}" target="_blank" class="px-5 py-2.5 text-sm font-semibold text-white bg-cyan-500 hover:bg-cyan-400 rounded-xl flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Demo ao Vivo
+                        </a>
+                        <a href="${project.githubUrl}" target="_blank" class="px-5 py-2.5 text-sm font-semibold text-gray-300 glass-card hover:text-white rounded-xl flex items-center gap-2">
+                            <i class="fa-brands fa-github"></i> Repositório
+                        </a>
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        /* --- MOBILE MENU TOGGLE --- */
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        /* --- TOAST & UTILS --- */
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-message').innerText = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.remove('translate-y-10'), 10);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-10');
+                setTimeout(() => toast.classList.add('hidden'), 300);
+            }, 3000);
+        }
+
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            showToast("Mensagem enviada com sucesso! Responderei em breve.");
+            e.target.reset();
+        }
+
+        function copyEmail(email) {
+            const tempInput = document.createElement('input');
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast("E-mail copiado para a área de transferência!");
+        }
+
+        function downloadCV() {
+            showToast("Iniciando o download do Currículo...");
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        /* INITIAL RENDER */
+        window.onload = () => {
+            renderSkills();
+            renderProjects();
+        };
+    </script>
+</body>
+</html>
